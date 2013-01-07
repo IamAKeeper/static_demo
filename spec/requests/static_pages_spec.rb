@@ -4,56 +4,41 @@ require 'spec_helper'
 
 describe "StaticPages" do
 
+  subject {page}
+
   let(:base_title) { "Ruby on Rails Tutorial Sample App" }
 
   describe "home page" do
-    it "should have the content 'Sample App'" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      visit '/static_pages/home'
-      page.should have_content('Sample App')
-    end
+    before {visit root_path}
 
-    it "should have the right title" do
-      visit '/static_pages/home'
-      page.should have_selector('title', :text => "#{base_title}")
-    end
+    it {should have_content('Sample App')}
+
+    it {should have_selector('title', :text => "#{base_title}")}
   end
 
 
 	describe "Help page" do
-		it "should have the content 'Help'" do
-			visit '/static_pages/help'
-			page.should have_content('Help')
-		end
+    before {visit help_path}
 
-    it "should have the right title" do
-      visit '/static_pages/help'
-      page.should have_selector('title', :text => "#{base_title} | Help")
-    end
+		it {should have_content('Help')}
+
+    it {should have_selector('title', :text => "#{base_title} | Help")}
 	end
 
   describe "About page" do
-    it "should have the content 'about'" do
-      visit '/static_pages/about'
-      page.should have_content('About Us')
-    end
+    before {visit about_path}
 
-    it "should have the right title" do
-      visit '/static_pages/about'
-      page.should have_selector('title', :text => "#{base_title} | About")
-    end
+    it {should have_content('About Us')}
+
+    it {should have_selector('title', :text => "#{base_title} | About")}
   end
 
   describe "Contact page" do
-    it "should have the content 'Contact'" do
-      visit '/static_pages/contact'
-      page.should have_content('Contact')
-    end
+    before {visit contact_path}
 
-    it "should have the right title" do
-      visit '/static_pages/contact'
-      page.should have_selector('title', :text => "#{base_title} | Contact")
-    end
+    it {should have_selector('h1', :text => 'Contact')}
+
+    it {should have_selector('title', :text => "#{base_title} | Contact") }
   end
 
 
